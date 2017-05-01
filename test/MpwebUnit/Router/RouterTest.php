@@ -9,6 +9,7 @@ use Mpweb\Router\Router;
 
 class RouterTest extends \PHPUnit_Framework_TestCase
 {
+	
 	 private $routes = [ 1 => '/home/',
 	 					 2 => '/post/{id}',
 	 					 3 => '/{category}/{product}/{id}/', 
@@ -59,7 +60,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase
 
     }
 
-         /** @test */
+    /** @test */
     public function shouldGetARoute()
     {
     	$this->router->add($this->route);

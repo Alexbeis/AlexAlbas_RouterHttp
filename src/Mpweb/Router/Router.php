@@ -4,8 +4,6 @@ namespace Mpweb\Router;
 
 class Router
 {
-
-
     private $_routes = array();
 
     private $regexExpression = ["~^/home/~",
