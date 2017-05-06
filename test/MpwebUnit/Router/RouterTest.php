@@ -77,30 +77,67 @@ class RouterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->route_4->getURL(), $this->router->getRoutes()[3]->getURL());
 
     }
+    /*No keyParams-> Solo valida si match o no.*/
+    // /** @test */
+    // public function shouldMatchARoute()
+    // {
+    // 	$this->assertTrue($this->router->match($this->route_1->getURL(),$this->routes[1]),"The Route does not match");
+    // 	$this->assertTrue($this->router->match($this->route_2->getURL(), $this->routes[2]), "The Route does not match");
+    // 	$this->assertTrue($this->router->match($this->route_3->getURL(), $this->routes[3]), "The Route does not match");
+    // 	$this->assertTrue($this->router->match($this->route_4->getURL(), $this->routes[4]), "The Route does not match");
+
+
+    // }
 
     /** @test */
-    public function shouldMatchARoute()
+    public function shouldReturnARouteNotFound()
     {
-    	$this->router->add($this->route_1);
-        $this->router->add($this->route_2);
-        $this->router->add($this->route_3);
-        $this->router->add($this->route_4);
-    	$this->assertTrue($this->router->match($this->route_1->getURL(),$this->routes[1]),"The Route does not match");
-    	$this->assertTrue($this->router->match($this->route_2->getURL(), $this->routes[2]), "The Route does not match");
-    	$this->assertTrue($this->router->match($this->route_3->getURL(), $this->routes[3]), "The Route does not match");
-    	$this->assertTrue($this->router->match($this->route_4->getURL(), $this->routes[4]), "The Route does not match");
 
+        $this->assertFalse($this->router->match($this->route_1->getURL(),$this->routes[4]),"The Route is Matched");
+    
+    }
 
+      /** @test */
+    public function shouldReturn3AsAParameter()
+    {
+        
+        $this->assertEquals(3, $this->router->match($this->route_1->getURL(),$this->routes[1])['id']);
+    }
+
+        /** @test */
+    public function shouldReturn1AsAPost()
+    {
+      
+        $this->assertEquals(1, $this->router->match($this->route_2->getURL(),$this->routes[2])['id']);
+    }
+
+        /** @test */
+    public function shouldReturnUnaCategoriaAndUnProductoWheURLisVariable()
+    {
+      
+        $this->assertEquals(["category"=>"una_categoria", "product" =>"un_producto"], $this->router->match($this->route_3->getURL(),$this->routes[3]));
+    }
+
+           /** @test */
+    public function shouldReturnUnProductoWhenURLisAFixedTag()
+    {
+      
+        $this->assertEquals(["name"=>"un_producto"], $this->router->match($this->route_4->getURL(),$this->routes[4]));
     }
 
 
-    // /** @test */
-    // public function shouldGetARoute1()
-    // {
-    // 	$this->router->add($this->route);
-    // 	$this->router->add($this->route1);
-    //     $this->assertTrue($this->router->match($this->routes[2], $this->route1->getURL()));
-    
-    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

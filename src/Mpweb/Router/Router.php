@@ -59,17 +59,8 @@ class Router
             $keyParams[$matches[$i]] = $params[$i + 1];
         }
     
-        if ($keyParams) return true;
+        //if ($keyParams) return true; // Para test Cases: shouldMatchARoute() (solo retornaba true or false)
+        return $keyParams;
 
-
-
-
-        // foreach($this->_routes as $route) {
-        //     foreach($this->regexExpression as $regex) {
-        //         if (preg_match($regex, $route->getURL(), $matches)) {
-        //             return true;
-        //         }
-        //     }    
-        // }
     }
 }
